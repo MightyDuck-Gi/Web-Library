@@ -19,11 +19,13 @@ const Books = () => {
     return (
     <div>
         <ul>
-            {books && books.map((book, i) =>(
-                <li key ={i}>
+            {books && books.map((book, i) => {
+                if(book.status === "Approved"){
+                 return (<li key ={i}>
                     <Book book={book} />
                 </li>
-            ))}
+                )}
+                })}
         </ul>
     </div>
     );

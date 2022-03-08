@@ -22,11 +22,10 @@ const Book = (props) => {
       <p> {description} </p>
       <h3>£ {price} </h3>
 
-      {roles === "employee" &&(<Button LinkComponent={ Link } to={`/books/${_id}`} sx= { {mt:'auto'} }>Update</Button>)}
-      {roles === "employee" &&(<Button onClick={deleteHandler} sx= { {mt:'auto'} }> Delete</Button>)}
-      {/* <Button LinkComponent={ Link } to={`/books/${_id}`} sx= { {mt:'auto'} }>Update</Button>
-      <Button onClick={deleteHandler} sx= { {mt:'auto'} }> Delete</Button> */}
-  </div>
+      {roles === "employee" &&(<Button color="primary" LinkComponent={ Link } to={`/books/${_id}`} sx= { {mt:'auto'} }>Update</Button>)}
+      {roles === "employee" &&(<Button color="error"onClick={deleteHandler} sx= { {mt:'auto' } }> Delete</Button>)}
+      
+    </div>
 };
 
 export default Book;

@@ -33,7 +33,6 @@ const Login = () => {
             };
 
           const localCookie = await axios.post("http://localhost:5000/auth/login", loginData);
-          console.log(localCookie)
             
           localStorage.setItem("token", localCookie.data);
           history("../books", {replace: true});

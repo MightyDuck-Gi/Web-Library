@@ -55,8 +55,6 @@ const BookDetail = () => {
                 <FormLabel>Price</FormLabel>
                 <TextField value={inputs.price} onChange={handleChange} type="number" margin="normal" fullWidth variant="outlined" name="price"/>
 
-                {/* add a button that will change the book approve to true, and only employee or above can see */}
-
                 <Button variant="contained" type="submit" color="success">Update Book</Button>
 
             </Box>

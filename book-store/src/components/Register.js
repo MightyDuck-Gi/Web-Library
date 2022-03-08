@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { Avatar, Paper, Grid, Box, TextField, Button, Typography, Link} from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+//import jwtDecode from 'jwt-decode';
 
 const Register = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordVerify, setPasswordVerify] = useState("");
+
+    const history = useNavigate();
     
     async function registerUser(e) {
         e.preventDefault();
@@ -20,6 +24,7 @@ const Register = () => {
             };
 
             await axios.post("http://localhost:5000/auth/", registerData);
+            history("../login")
             
         } catch (err) {
             console.log(err)
@@ -43,7 +48,7 @@ const Register = () => {
                 </h2>
             </Grid>
 
-            <TextField value={email} onChange={(e) => setEmail(e.target.value)} label='Username' placeholder ='Username' type='email' margin={"normal"} fullWidth required />
+            <TextField value={email} onChange={(e) => setEmail(e.target.value)} label='Email' placeholder ='Email' type='email' margin={"normal"} fullWidth required />
             <TextField value={password} onChange={(e) => setPassword(e.target.value)} label='Password' placeholder ='Password' type='password' margin={"normal"} fullWidth required />
             <TextField value={passwordVerify} onChange={(e) => setPasswordVerify(e.target.value)} label='Confirm Password' placeholder ='Confirm Password' type='password' margin={"normal"} fullWidth required />
 
