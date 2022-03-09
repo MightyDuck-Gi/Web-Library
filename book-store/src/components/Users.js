@@ -1,11 +1,15 @@
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import axios from 'axios'
+import jwtDecode from 'jwt-decode';
 import React, { useEffect, useState } from 'react'
 
 /*//==================================================\\
     front-end to load all the user for admin
 */
 const Users = () =>{
+
+  const token = localStorage.getItem("token");
+  const userId = token ? jwtDecode(localStorage.getItem("token"))?.user || false :false;
 
   const [listUsers, setListUsers] = useState([]);
     //use useState to change the users informations
@@ -44,8 +48,9 @@ const Users = () =>{
           </TableRow>
         </TableHead>
         <TableBody>
-        {listUsers && listUsers.map((row) => (
-            <TableRow key = {row.id}>
+        {listUsers && listUsers.map((row) => {
+            if(row.id !== userId) {
+            return (<TableRow key = {row.id}>
               <TableCell>{row.id} </TableCell>
               <TableCell>{row.email}</TableCell>
               <TableCell>{row.role} </TableCell>
@@ -53,8 +58,8 @@ const Users = () =>{
                 <Button variant="contained" color="primary" onClick={() => {updateUser(row.id)}}>edit</Button>
                 <Button variant="contained" color="error" onClick={() => {deleteUser(row.id)}}>delete</Button>
               </TableCell>
-            </TableRow>
-          ))}
+            </TableRow>)
+          }})}
         </TableBody>
       </Table>
     </TableContainer>
