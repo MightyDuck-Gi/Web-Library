@@ -23,11 +23,10 @@ function App() {
   const token = localStorage.getItem("token");
   const loggedIn = token ? jwtDecode(localStorage.getItem("token"))?.login || false :false;
   const roles = token ? jwtDecode(localStorage.getItem("token"))?.role || false: false;
-/*//==================================================\\
+  /*//==================================================\\
     Then the routes are protected using these const above
 */
   return <React.Fragment >
-
     <header>
       <Header />
     </header>

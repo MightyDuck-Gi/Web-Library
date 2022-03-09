@@ -2,20 +2,21 @@ import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
+/*//==================================================\\
+    front-end to load all the user for admin
+*/
 const Users = () =>{
 
   const [listUsers, setListUsers] = useState([]);
-
-    //use useState() to change the users informations
+    //use useState to change the users informations
   useEffect(() => {
-    axios.get("http://localhost:5000/auth/users").then((res) => {
+    axios.get("http://localhost:5000/auth/users").then((res) => {//calls the api from backend to interact with db
       setListUsers(res.data)
     })
   }, []);
   
-  const updateUser = (id) => {
+  const updateUser = (id) => {//this will allow the admin to update the user role
     const newRole = prompt("Enter new role: ");
-
     axios.put("http://localhost:5000/auth/update", { newRole: newRole, id: id}).then(() => {
       setListUsers(listUsers.map((val) => {
         return val.id === id ? {id: id, email: val.email, role: newRole} : val
@@ -23,14 +24,14 @@ const Users = () =>{
     });
   };
 
-  const deleteUser = (id) => {
+  const deleteUser = (id) => {//this will allow the admin to delete the user
     axios.delete(`http://localhost:5000/auth/delete/${id}`).then(() => {
         setListUsers(listUsers.filter((val) => {
           return val.id !== id;
         }));
     });
   };
-
+//renders the front-end to make table to enable ease of access for admin
   return (
     <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

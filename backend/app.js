@@ -22,9 +22,9 @@ app.use("/users", router);
 app.use("/update", router);
 app.use("/delete/:id", router);
 app.use("/auth", require("./routes/user-routes"));
-app.use("/customer", require("./routes/customer-routes"));
+//app.use("/customer", require("./routes/customer-routes"));
 /*//==================================================\\
-    connting to database
+    connecting to mongo d database
 */
 mongoose.connect(
     "mongodb+srv://admin:hwTUqBZ3IdF68Wks@cluster0.xrw7m.mongodb.net/bookStore?retryWrites=true&w=majority"

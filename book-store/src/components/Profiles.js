@@ -2,20 +2,16 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from "@mui/material";
 
-
+/*//==================================================\\
+    Handles all the book from user 
+*/
 const Profiles = () => {
 
-// const token = localStorage.getItem("token");
-//return axios.get(URL).then((res) => res.data);
-
-  // axios.get("http://localhost:5000/auth/profile").then((res) => console.log(res.data));
-
   const [userBooks, setUserBooks] = useState();
-  useEffect(() => {
+  useEffect(() => {//calls the function
     axios.get("http://localhost:5000/auth/profile").then(res => setUserBooks(res.data.books));
   }, []);
-
-  console.log(userBooks);
+  //then it renders the user book collection to the front end table
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

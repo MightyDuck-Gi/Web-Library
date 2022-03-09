@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
     This is model schema on how a books gets stores into 
         the database
 */
-const bookSchema = new Schema({
+const bookSchema = new Schema({//feilds that are required true can't be skipped ortherwise it will respond with error
     name: {
         type: String,
         required: true
@@ -35,8 +35,8 @@ const bookSchema = new Schema({
     },
 },
 {
-    timestamps: true,
+    timestamps: true,//to see when the obj gets greated
 }
 );
-
+//exports the mode as Book
 module.exports = mongoose.model("Book", bookSchema);

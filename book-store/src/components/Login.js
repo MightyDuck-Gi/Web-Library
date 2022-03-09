@@ -5,24 +5,24 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 
+/*//==================================================\\
+    Handles all the login  request from the use
+*/
 const Login = () => {
-
     const history = useNavigate();
-
+//checks if the user is logged in with tokken
     const token = localStorage.getItem("token");
     const loggedIn = token ? jwtDecode(localStorage.getItem("token"))?.login || false :false;
-
     useEffect(() => {
-        
         if(loggedIn) history("../books", {replace: true});
     });
-    
+    //checks if users already 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const paperStyle = {padding: 20, height: '40vh', width:280, margin: "20px auto"}
     const btnStyle = {margin: '8px 0'}
-
+    //this is the function that will get called when trying to login
     async function loginUser(e) {
         e.preventDefault();
 
@@ -31,7 +31,7 @@ const Login = () => {
                 email,
                 password,
             };
-
+        //calls the api from the backend to get the function then it stores the login data to 'toke'
           const localCookie = await axios.post("http://localhost:5000/auth/login", loginData);
             
           localStorage.setItem("token", localCookie.data);
@@ -41,7 +41,7 @@ const Login = () => {
             console.log(err)
         };
     };
-
+    //from that its rendering input feild for user to type in 
     return <form onSubmit={loginUser}>
         <Box>
             <Paper elevation={10} style={paperStyle}>

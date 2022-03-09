@@ -1,13 +1,10 @@
 import React from 'react';
 import { Button } from '@mui/material';
-//import useNavigate from 'react';
 import "./Book.css";
 import axios from 'axios';
-
+//this will get he books from db
 const GetBooks = ({book}) => {
-  //const history = useNavigate();
-  
-  const updateBook = async (status) => {
+  const updateBook = async (status) => {//calls the function from back-end to 
     await axios.put(`http://localhost:5000/books/${book._id}`, {
       name: book.name,
       author: book.author,
@@ -17,14 +14,14 @@ const GetBooks = ({book}) => {
       status: status  
   })
 }
-const approveHandler = () => {
+const approveHandler = () => {//changes the books status
   updateBook("Approved");
   }
   
-  const denyHandler = () => {
+  const denyHandler = () => {//changes the books status
     updateBook("Denied");
   }
-
+  //loads the data of books into cards
   return <div className='card'>
     <article>By {book.author}</article>
     <h3> {book.name}</h3>

@@ -3,16 +3,17 @@ import { Avatar, Paper, Grid, Box, TextField, Button, Typography, Link} from '@m
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-//import jwtDecode from 'jwt-decode';
 
+/*//==================================================\\
+    Handles all the Register  request from the use
+*/
 const Register = () => {
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordVerify, setPasswordVerify] = useState("");
 
     const history = useNavigate();
-    
+    //useState to update the data from the front-end
     async function registerUser(e) {
         e.preventDefault();
 
@@ -22,7 +23,7 @@ const Register = () => {
                 password,
                 passwordVerify,
             };
-
+            //calls the backend function to register
             await axios.post("http://localhost:5000/auth/", registerData);
             history("../login")
             
@@ -30,10 +31,9 @@ const Register = () => {
             console.log(err)
         };
     };
-
+    //this renders the front end card for the user to input and enter their details
     const paperStyle = {padding: 20, height: '40vh', width:280, margin: "20px auto"}
     const btnStyle = {margin: '8px 0'}
-
     return <form onSubmit={registerUser}>
     <Box>
         <Paper elevation={10} style={paperStyle}>
