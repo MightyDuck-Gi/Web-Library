@@ -23,11 +23,15 @@ app.use("/update", router);
 app.use("/delete/:id", router);
 app.use("/auth", require("./routes/user-routes"));
 //app.use("/customer", require("./routes/customer-routes"));
+
 /*//==================================================\\
-    connecting to mongo d database
+    connecting to mongo d database. To start server 
+        open cmd and enter this:
+C:\Users\LabStudent-55-604385\Documents\Workspace\MongoDBServer\bin\mongod.exe --dbpath=C:\Users\LabStudent-55-604385\Documents\Workspace\MongoDBServer\data --nojournal
 */
 mongoose.connect(
-    "mongodb+srv://admin:hwTUqBZ3IdF68Wks@cluster0.xrw7m.mongodb.net/bookStore?retryWrites=true&w=majority"
+    //"mongodb+srv://admin:hwTUqBZ3IdF68Wks@cluster0.xrw7m.mongodb.net/bookStore?retryWrites=true&w=majority"
+    'mongodb://127.0.0.1:27017/book-store'
     ).then(()=>console.log("Connected To Database"))
     .then(()=> {
         app.listen(5000);
